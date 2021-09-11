@@ -12,16 +12,7 @@ def send_message(number):
     params = {
         'phone':number,'course':'1','sesskey':'','action':'sms_reg'
             }
-    if len(message) <= vars.max:
-        result = requests.get(base_url, params=params) 
-        result_text = result.text
-        status_code = result.status_code
-    else:
-        result_text = f'Max message length should be {vars.max} letters.'
-        status_code = None
-    return result_text, status_code
-
-@bot.on(events.NewMessage(pattern='/send$', func=lambda e: e.is_private))
+   @bot.on(events.NewMessage(pattern='/send$', func=lambda e: e.is_private))
 async def send(event):
     async with bot.conversation(await event.get_chat(), exclusive=False, total_timeout=600) as conv:
         await conv.send_message("Send me SRILANKA 🇮🇳 number without +94 in 60 seconds.")
